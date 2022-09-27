@@ -2,10 +2,8 @@ const searchNews = document.querySelector('.news-search');
 const input = document.querySelector('.input');
 const newsList = document.querySelector('.list');
 
-// add event on button
-searchNews.addEventListener('submit', retrives)
 
-function retrives(e){
+const Retrives = (e) => {
 
     newsList.innerHTML = '';
      e.preventDefault();
@@ -15,17 +13,17 @@ function retrives(e){
     let topic = input.value;
 
 //  News api url fatch articals only
-    let url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
+    const url = `https://newsapi.org/v2/everything?q=${topic}&apiKey=${apiKey}`
 
-  fetch(url).then((res) =>{
+  fetch(url).then((res) => {
     return res.json();
   }).then((data) =>{
     //console.log(data);
 
 /// fatch the data elements 
     data.articles.forEach(article => {
-        let li = document.createElement('li');
-        let a = document.createElement('a');
+        const li = document.createElement('li');
+        const a = document.createElement('a');
         a.setAttribute('href', article.url);
         a.setAttribute('target', '_blank');
         a.textContent = article.title;
@@ -36,4 +34,7 @@ function retrives(e){
    
     //console.log(topic)
 
-}
+};
+
+// add event on button
+searchNews.addEventListener('submit', Retrives)
